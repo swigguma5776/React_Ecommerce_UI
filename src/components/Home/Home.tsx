@@ -50,7 +50,7 @@ export const Home = (props: Props) => {
                 <MainText>
                     <h1> {props.title} </h1>
                     {/* this Button is a component we imported from material ui */}
-                    <Button sx = {{ marginTop: '10px '}} component={Link} to={'/'} variant='contained'>Enter if you dare......💀</Button>
+                    <Button sx = {{ marginTop: '10px '}} component={Link} to={localStorage.getItem('auth') === 'true' ? '/shop' : '/auth'} variant='contained'>Enter if you dare......💀</Button>
                 </MainText>
             </Main>
         </Root>
