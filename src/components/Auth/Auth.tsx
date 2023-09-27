@@ -74,7 +74,7 @@ interface SubmitProps {
 
 
 // making a literal union type for our alerts
-type MessageType = 'error' | 'warning' | 'info' | 'success'
+export type MessageType = 'error' | 'warning' | 'info' | 'success'
 
 
 const GoogleButton = (props: ButtonProps ) => {
