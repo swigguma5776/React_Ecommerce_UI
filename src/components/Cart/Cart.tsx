@@ -1,4 +1,4 @@
-import * as React  from 'react'; 
+import * as _React  from 'react'; 
 import { useState, useEffect } from 'react'; 
 import {
     Box,
@@ -22,6 +22,7 @@ import { ShopState } from '../../customHooks';
 import { shopStyles } from '../Shop';
 import { serverCalls } from '../../api';
 import { useGetOrder } from '../../customHooks';
+import { Order } from '../Order';
 
 
 
@@ -33,7 +34,7 @@ export interface CreateState {
 
 
 export const Cart = () => {
-    const { orderData, getData } = useGetOrder(); 
+    const { orderData } = useGetOrder(); 
     const [ currentCart, setCart ] = useState<ShopState[]>([]);
     const db = getDatabase();
     const userId = localStorage.getItem('token')
@@ -81,7 +82,7 @@ export const Cart = () => {
         }
 
         // this makes API to our flask server to create an order
-        const response = await serverCalls.createOrder(data)
+        await serverCalls.createOrder(data)
 
         remove(cartRef)
         .then(() => {
@@ -224,6 +225,15 @@ export const Cart = () => {
                         </Grid>
                     ))}
                 </Grid>
+                <Stack direction = 'column' sx={{width: '75%', marginLeft: 'auto', marginRight: 'auto'}}>
+                <Typography 
+                    variant = 'h4'
+                    sx = {{ marginTop: '100px', marginBottom: '100px'}}
+                    >
+                    Your Orders
+                </Typography>
+                <Order />
+                </Stack>
             </Stack>
         </Box>
     )

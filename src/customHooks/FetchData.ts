@@ -1,4 +1,4 @@
-import * as React from 'react';
+import * as _React from 'react';
 import { useState, useEffect } from 'react';
 
 // internal imports

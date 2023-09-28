@@ -1,5 +1,10 @@
+import { ShopState } from "../customHooks";
+import { CreateState } from "../components";
+
 let accessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY5NTc1NDYxMSwianRpIjoiZjRjYTRmMTAtZGRlMi00ODM0LThlY2EtZGExMDc2NTdiNDgzIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6ImFsZXhzIiwibmJmIjoxNjk1NzU0NjExLCJleHAiOjE3MjcyOTA2MTF9.WVF87e0PgE1zvqQgYFAaY0qF6XhUwLmg5KadGUuTc84" //our backend access_token from flask
 let userId = localStorage.getItem('token') // our users signed into React, this is their userId
+
+type PartialShop = Partial<ShopState>
 
 
 export const serverCalls = {
@@ -40,7 +45,7 @@ export const serverCalls = {
 
         return await response.json()
     },
-    createOrder: async (data: any) => {
+    createOrder: async (data: CreateState) => {
 
         const response = await fetch(`https://rangers127-shop-un7o.onrender.com/api/order/create/${userId}`, {
             method: 'POST',
@@ -59,7 +64,7 @@ export const serverCalls = {
 
         return await response.json()
     },
-    updateOrder: async (id: string, data: any) => {
+    updateOrder: async (id: string, data: PartialShop) => {
 
         const response = await fetch(`https://rangers127-shop-un7o.onrender.com/api/order/update/${id}`, {
             method: 'PUT',
@@ -78,7 +83,7 @@ export const serverCalls = {
 
         return await response.json()
     },
-    deleteOrder: async (id: string, data: any) => {
+    deleteOrder: async (id: string, data: PartialShop) => {
 
         const response = await fetch(`https://rangers127-shop-un7o.onrender.com/api/order/delete/${id}`, {
             method: 'DELETE',
